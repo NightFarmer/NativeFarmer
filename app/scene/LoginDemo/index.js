@@ -10,7 +10,8 @@ import {
 import {observable, computed, action} from 'mobx'
 import {observer} from 'mobx-react/native'
 
-import MainPage from '../Main'
+import {Actions, Scene, Router, ActionConst} from 'react-native-router-flux';
+
 
 const delay = (time) => {
     return new Promise((resolve, reject) => {
@@ -59,6 +60,7 @@ class LoginPage extends Component {
         let username = this.loginData.username;
         let password = this.loginData.password;
         console.log(username, password);
+        this.loginData.result = "登录中。。。"
         let formData = new FormData();
         formData.append("username", username);
         formData.append("password", password);
@@ -66,7 +68,7 @@ class LoginPage extends Component {
             method: 'POST',
             body: formData
         });
-        console.log(response.status);
+        console.warn(response.status);
         let resultObj = await response.json();
         console.log(resultObj);
         this.loginData.result = resultObj
@@ -74,7 +76,8 @@ class LoginPage extends Component {
         await delay(2000)
         // this.loginData.result = "hehe"
         // this.props.navigator.pop();
-        this.props.navigator.resetTo({component: MainPage})//登陆完成重置整个路由栈
+        // this.props.navigator.resetTo({component: MainPage})//登陆完成重置整个路由栈
+        Actions.main()
     }
 }
 

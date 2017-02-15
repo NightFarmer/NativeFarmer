@@ -10,21 +10,16 @@ import {
 import {observable, computed} from 'mobx'
 import {observer} from 'mobx-react/native'
 
-import TodoList from './TodoList'
-import IntervalUnMount from './IntervalUnmount'
-import FlexBasis from './FlexBasis'
-import AsyncAwaitTest from './AsyncAwaitTest'
-import LoginDemo from './LoginDemo'
-import MobXWithoutClass from './MobXWithoutClass'
+import {Actions, Scene, Router} from 'react-native-router-flux';
 
 
 const demoList = [
-    {title: '代办事项示例', component: TodoList},
-    {title: '定时器挂载示例', component: IntervalUnMount},
-    {title: 'FlexBasis', component: FlexBasis},
-    {title: 'AsyncAwaitTest', component: AsyncAwaitTest},
-    {title: '模拟登陆', component: LoginDemo},
-    {title: 'MobX不使用额外class', component: MobXWithoutClass},
+    {title: '代办事项示例', component: "TodoList"},
+    {title: '定时器挂载示例', component: "IntervalUnmount"},
+    {title: 'FlexBasis', component: "FlexBasis"},
+    {title: 'AsyncAwaitTest', component: "AsyncAwaitTest"},
+    {title: '模拟登陆', component: "LoginDemo"},
+    {title: 'MobX不使用额外class', component: "MobXWithoutClass"},
 ];
 
 class DemoListView extends Component {
@@ -37,10 +32,16 @@ class DemoListView extends Component {
     }
 
     renderItem = (itemData) => {
-        return <TouchableOpacity onPress={() => this.props.navigator.push({ component: itemData.component })}
+        return <TouchableOpacity onPress={()=>this.jump(itemData)}
                                  key={itemData.component}>
             <Text>{itemData.title}</Text>
         </TouchableOpacity>
+    }
+
+    jump = (itemData) => {
+        // Actions.TodoList()
+        // console.warn(itemData.component)
+        Actions[itemData.component]()
     }
 }
 
