@@ -51,8 +51,10 @@ class TestOutPut {
             // 所以以下代码不会被执行了
             console.log('end');
             this.text = "end"
+            let hehe =''
+            hehe()
         } catch (err) {
-            console.log(err); // 这里捕捉到错误 `error`
+            console.warn(err); // 这里捕捉到错误 `error`
         }
     };
 }

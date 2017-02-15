@@ -10,7 +10,7 @@ import {
 import {observable, computed, action} from 'mobx'
 import {observer} from 'mobx-react/native'
 
-import MainPage from '../main'
+import MainPage from '../Main'
 
 const delay = (time) => {
     return new Promise((resolve, reject) => {

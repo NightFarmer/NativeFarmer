@@ -10,7 +10,7 @@ import {
 import {observable, computed} from 'mobx'
 import {observer} from 'mobx-react/native'
 
-import MainPage from './main'
+import MainPage from './Main'
 
 import AndroidBack from './AndroidBack'
 
