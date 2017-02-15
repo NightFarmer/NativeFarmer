@@ -15,6 +15,7 @@ import IntervalUnMount from './IntervalUnmount'
 import FlexBasis from './FlexBasis'
 import AsyncAwaitTest from './AsyncAwaitTest'
 import LoginDemo from './LoginDemo'
+import MobXWithoutClass from './MobXWithoutClass'
 
 
 const demoList = [
@@ -23,6 +24,7 @@ const demoList = [
     {title: 'FlexBasis', component: FlexBasis},
     {title: 'AsyncAwaitTest', component: AsyncAwaitTest},
     {title: '模拟登陆', component: LoginDemo},
+    {title: 'MobX不使用额外class', component: MobXWithoutClass},
 ];
 
 class DemoListView extends Component {

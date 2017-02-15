@@ -45,8 +45,8 @@ class TestOutPut {
     start = async function () {
         try {
             // 在这里使用起来就像同步代码那样直观
-            console.log('start');
-            this.text = "start";
+            console.log('start 等待三秒会有一个异常被catch并打印错误信息');
+            this.text = "start 等待三秒会有一个异常被catch并打印错误信息";
             await sleep(3000); // 这里得到了一个返回错误
             // 所以以下代码不会被执行了
             console.log('end');
