@@ -21,6 +21,7 @@ const demoList = [
     {title: '模拟登陆', component: "LoginDemo"},
     {title: 'MobX不使用额外class', component: "MobXWithoutClass"},
     {title: 'ToastDemo示例', component: "ToastDemo"},
+    {title: '不能返回的界面', component: "CantBackScene"},
 ];
 
 class DemoListView extends Component {

@@ -6,6 +6,7 @@ import LoginDemo from './LoginDemo'
 import MobXWithoutClass from './MobXWithoutClass'
 import timerUnmount from './timerUnmount'
 import ToastDemo from './ToastDemo'
+import CantBackScene from './CantBackScene'
 
 export {
     TodoList,
@@ -15,5 +16,6 @@ export {
     LoginDemo,
     MobXWithoutClass,
     timerUnmount,
-    ToastDemo
+    ToastDemo,
+    CantBackScene
 }
