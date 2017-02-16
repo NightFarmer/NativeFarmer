@@ -55,7 +55,8 @@ import {
     IntervalUnmount,
     LoginDemo,
     MobXWithoutClass,
-    timerUnmount
+    timerUnmount,
+    ToastDemo
 } from "./scene"
 
 
@@ -73,6 +74,7 @@ const scenes = Actions.create(
         <Scene key="MobXWithoutClass" component={MobXWithoutClass} hideNavBar={true}/>
         <Scene key="timerUnmount" component={timerUnmount} hideNavBar={true}/>
         <Scene key="TodoList" component={TodoList} hideNavBar={true}/>
+        <Scene key="ToastDemo" component={ToastDemo} hideNavBar={true}/>
     </Scene>
 );
 

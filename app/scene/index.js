@@ -5,6 +5,7 @@ import IntervalUnmount from './IntervalUnmount'
 import LoginDemo from './LoginDemo'
 import MobXWithoutClass from './MobXWithoutClass'
 import timerUnmount from './timerUnmount'
+import ToastDemo from './ToastDemo'
 
 export {
     TodoList,
@@ -13,5 +14,6 @@ export {
     IntervalUnmount,
     LoginDemo,
     MobXWithoutClass,
-    timerUnmount
+    timerUnmount,
+    ToastDemo
 }

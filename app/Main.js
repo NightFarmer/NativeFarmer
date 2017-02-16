@@ -20,6 +20,7 @@ const demoList = [
     {title: 'AsyncAwaitTest', component: "AsyncAwaitTest"},
     {title: '模拟登陆', component: "LoginDemo"},
     {title: 'MobX不使用额外class', component: "MobXWithoutClass"},
+    {title: 'ToastDemo示例', component: "ToastDemo"},
 ];
 
 class DemoListView extends Component {
