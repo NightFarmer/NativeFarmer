@@ -39,6 +39,8 @@ class LoginData {
 }
 
 let loginUrl = 'http://120.27.107.170/yuerduo-front/loginapi/login';
+// let loginUrl = 'http://www.97gyl.com/yuerduo-front/loginapi/login';
+
 
 @observer
 class LoginPage extends Component {
@@ -59,6 +61,9 @@ class LoginPage extends Component {
     onLogin = async() => {
         let username = this.loginData.username;
         let password = this.loginData.password;
+
+        this.alert(username, password)
+        return
         console.log(username, password);
         this.loginData.result = "登录中。。。"
         let formData = new FormData();
