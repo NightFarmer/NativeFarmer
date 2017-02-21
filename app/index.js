@@ -16,9 +16,6 @@ import AndroidBack from './AndroidBack'
 
 import {Actions, Scene, Router, ActionConst} from 'react-native-router-flux';
 
-import StaticContainer from 'react-native/Libraries/Components/StaticContainer';
-
-import Dialog from './widget/Dialog'
 
 // class App extends Component {
 //
@@ -63,53 +60,11 @@ import {
     CantBackScene
 } from "./scene"
 
-const oriFunc = Actions.iterate;
+import Dialog from './widget/Dialog'
+import {init as ListUtilInit} from './util/ListUtil'
 
-console.warn(oriFunc)
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        position: 'relative'
-    }
-});
-
-Actions.iterate = function (root: Scene, parentProps = {}, refsParam = {}, wrapBy) {
-    const oriResult = oriFunc(root, parentProps, refsParam, wrapBy);
-    const OriComponent = oriResult.component;
-    if (OriComponent) {
-        @observer
-        class WrapperComponent extends Component {
-
-            constructor(props) {
-                super(props);
-                // setTimeout(() => {
-                //     this.hehe.num = 33333
-                // }, 3000);
-                OriComponent.prototype.alert = (message, title, others) => {
-                    // this.hehe.num++
-                    this.refs.dialogs.alert(message, title)
-                }
-            }
-
-            render() {
-                return (
-                    <View style={styles.container}>
-                        <StaticContainer shouldUpdate={false}>
-                            <OriComponent {...this.props} />
-                        </StaticContainer>
-                        {/*{elements}*/}
-                        <Dialog ref="dialogs"/>
-                        {/*<View style={{flex:1,backgroundColor:"#FFFFDD",position:"absolute"}}><Text>123</Text></View>*/}
-                    </View>
-                );
-            };
-
-        }
-        oriResult.component = WrapperComponent
-    }
-    return oriResult
-};
+Dialog.initWithRouterFlux();
+ListUtilInit();
 
 const scenes = Actions.create(
     <Scene key="root">

@@ -5,46 +5,62 @@ import {
     Text,
     View,
     Navigator,
-    Dimensions,
 } from 'react-native';
 
-import {observable, computed} from 'mobx'
-import {observer} from 'mobx-react/native'
+import {Actions} from 'react-native-router-flux';
 
-import DialogComponent from './DialogComponent'
+import StaticContainer from 'react-native/Libraries/Components/StaticContainer';
 
-class Alert {
-    type = 1;
-    id = uid++;
+import DialogContainer from './DialogContainer'
 
-    @observable
-    title;
+class DialogIniter {
+    static oriFunc = Actions.iterate;
 
-    @observable
-    message
-}
+    static inited = false;
 
-let uid = 1;
+    static initWithRouterFlux = () => {
+        if (!DialogIniter.inited)
+            Actions.iterate = function (root: Scene, parentProps = {}, refsParam = {}, wrapBy) {
+                const oriResult = DialogIniter.oriFunc(root, parentProps, refsParam, wrapBy);
+                const OriComponent = oriResult.component;
+                if (OriComponent) {
+                    class WrapperComponent extends Component {
 
-@observer
-class DialogContainer extends Component {
+                        constructor(props) {
+                            super(props);
+                            OriComponent.prototype.alert = (message, title, buttonList) => {
+                                this.refs.dialogs.alert(message, title, buttonList)
+                            }
+                        }
 
-    @observable
-    dialogList = [];
+                        render() {
+                            return (
+                                <View style={styles.container}>
+                                    <StaticContainer shouldUpdate={false}>
+                                        <OriComponent {...this.props} />
+                                    </StaticContainer>
+                                    {/*{elements}*/}
+                                    <DialogContainer ref="dialogs"/>
+                                </View>
+                            );
+                        }
+                        ;
 
-    render = () =>
-        <View style={{position:"absolute"}}>
-            {this.dialogList.map((it) =>
-                <DialogComponent dialogInfo={it} key={it.id}/>
-            )}
-        </View>;
-
-    alert = (message, title, hhe) => {
-        const newAlert = new Alert();
-        newAlert.message = message;
-        newAlert.title = title;
-        this.dialogList.push(newAlert)
+                    }
+                    oriResult.component = WrapperComponent
+                }
+                return oriResult
+            };
+        DialogIniter.inited = true
     }
 }
 
-export default DialogContainer
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        position: 'relative'
+    }
+});
+
+export default DialogIniter;
