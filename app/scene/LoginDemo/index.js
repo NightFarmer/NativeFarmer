@@ -61,22 +61,6 @@ class LoginPage extends Component {
     onLogin = async() => {
         let username = this.loginData.username;
         let password = this.loginData.password;
-
-        this.alert(username, password, [
-            {
-                text: "hehe",
-                callBack: () => {
-                    this.onLogin()
-                }
-            },
-            {
-                text: "yoooo",
-                callBack: () => {
-
-                }
-            }
-        ])
-        return
         console.log(username, password);
         this.loginData.result = "登录中。。。"
         let formData = new FormData();

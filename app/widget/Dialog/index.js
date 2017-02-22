@@ -28,8 +28,8 @@ class DialogIniter {
 
                         constructor(props) {
                             super(props);
-                            OriComponent.prototype.alert = (message, title, buttonList) => {
-                                this.refs.dialogs.alert(message, title, buttonList)
+                            OriComponent.prototype.alert = (...p) => {
+                                this.refs.dialogs.alert(...p)
                             }
                         }
 

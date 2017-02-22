@@ -38,13 +38,14 @@ class DialogContainer extends Component {
         this.dialogList && this.dialogList.remove(dialogView)
     };
 
-    alert = (message, title, buttonList) => {
+    alert = (message, title, buttonList, cancelCallback) => {
         const alert = new Alert(uid++);
         alert.title = title;
         alert.message = message;
         if (buttonList) {
             alert.buttonList = buttonList;
         }
+        alert.cancelCallback = cancelCallback;
         this.dialogList.push(alert);
         return alert
     };

@@ -10,8 +10,6 @@ import {
 import {observable, computed} from 'mobx'
 import {observer} from 'mobx-react/native'
 
-import MainPage from './Main'
-
 import AndroidBack from './AndroidBack'
 
 import {Actions, Scene, Router, ActionConst} from 'react-native-router-flux';
@@ -48,42 +46,45 @@ import {Actions, Scene, Router, ActionConst} from 'react-native-router-flux';
 // import MobXWithoutClass from './MobXWithoutClass'
 // import timerUnmount from './timerUnmount'
 
-import {
-    TodoList,
-    AsyncAwaitTest,
-    FlexBasis,
-    IntervalUnmount,
-    LoginDemo,
-    MobXWithoutClass,
-    timerUnmount,
-    ToastDemo,
-    CantBackScene
-} from "./scene"
+// import {
+//     TodoList,
+//     AsyncAwaitTest,
+//     FlexBasis,
+//     IntervalUnmount,
+//     LoginDemo,
+//     MobXWithoutClass,
+//     timerUnmount,
+//     ToastDemo,
+//     CantBackScene,
+//     DialogDemo
+// } from "./scene"
 
-import Dialog from './widget/Dialog'
+// import Dialog from './widget/Dialog'
 import {init as ListUtilInit} from './util/ListUtil'
 
-Dialog.initWithRouterFlux();
+// Dialog.initWithRouterFlux();
 ListUtilInit();
 
-const scenes = Actions.create(
-    <Scene key="root">
-        {/*<Scene key="login" component={Login} title="Login"/>*/}
-        {/*<Scene key="register" component={Register} title="Register"/>*/}
-        {/*<Scene key="home" component={Home}/>*/}
-        <Scene key="main" component={MainPage} hideNavBar={true} type={ActionConst.RESET}/>
-        <Scene key="AsyncAwaitTest" component={AsyncAwaitTest} hideNavBar={true}/>
-        <Scene key="LoginDemo" component={LoginDemo} hideNavBar={true}/>
-        <Scene key="FlexBasis" component={FlexBasis} hideNavBar={true}/>
-        <Scene key="IntervalUnmount" component={IntervalUnmount} hideNavBar={true}/>
-        <Scene key="LoginDemo" component={LoginDemo} hideNavBar={true}/>
-        <Scene key="MobXWithoutClass" component={MobXWithoutClass} hideNavBar={true}/>
-        <Scene key="timerUnmount" component={timerUnmount} hideNavBar={true}/>
-        <Scene key="TodoList" component={TodoList} hideNavBar={true}/>
-        <Scene key="ToastDemo" component={ToastDemo} hideNavBar={true}/>
-        <Scene key="CantBackScene" component={CantBackScene} hideNavBar={true} panHandlers={null}/>
-    </Scene>
-);
+import scenes from './scene'
+
+// const scenes = Actions.create(
+//     <Scene key="root">
+//         {/*<Scene key="login" component={Login} title="Login"/>*/}
+//         {/*<Scene key="register" component={Register} title="Register"/>*/}
+//         {/*<Scene key="home" component={Home}/>*/}
+//         <Scene key="main" component={MainPage} hideNavBar={true} type={ActionConst.RESET}/>
+//         <Scene key="AsyncAwaitTest" component={AsyncAwaitTest} hideNavBar={true}/>
+//         <Scene key="LoginDemo" component={LoginDemo} hideNavBar={true}/>
+//         <Scene key="FlexBasis" component={FlexBasis} hideNavBar={true}/>
+//         <Scene key="IntervalUnmount" component={IntervalUnmount} hideNavBar={true}/>
+//         <Scene key="LoginDemo" component={LoginDemo} hideNavBar={true}/>
+//         <Scene key="MobXWithoutClass" component={MobXWithoutClass} hideNavBar={true}/>
+//         <Scene key="timerUnmount" component={timerUnmount} hideNavBar={true}/>
+//         <Scene key="TodoList" component={TodoList} hideNavBar={true}/>
+//         <Scene key="ToastDemo" component={ToastDemo} hideNavBar={true}/>
+//         <Scene key="CantBackScene" component={CantBackScene} hideNavBar={true} panHandlers={null}/>
+//     </Scene>
+// );
 
 class App extends React.Component {
     render() {

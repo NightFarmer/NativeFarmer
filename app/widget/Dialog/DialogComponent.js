@@ -68,9 +68,8 @@ class DialogComponent extends Component {
         </View>
     };
     dismiss = () => {
-        if (this.refs.dialogView && this.refs.dialogView.onDismissAnim) {
-            this.refs.dialogView.onDismissAnim()
-        }
+        this.refs.dialogView.onDismissAnim && this.refs.dialogView.onDismissAnim();
+        this.props.dialogInfo.cancelCallback && this.props.dialogInfo.cancelCallback();
         this.onMaskDismissAnim()
     };
 
