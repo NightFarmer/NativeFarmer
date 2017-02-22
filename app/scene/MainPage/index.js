@@ -25,6 +25,9 @@ const demoList = [
     {title: 'DialogDemo', component: "DialogDemo"},
 ];
 
+import backHandler from '../../backHandler'
+
+@backHandler("onBackAndroid")
 class DemoListView extends Component {
 
     render() {
@@ -46,6 +49,11 @@ class DemoListView extends Component {
         // console.warn(itemData.component)
         Actions[itemData.component]()
     }
+
+    onBackAndroid() {
+        console.warn("back click")
+        return true
+    }
 }
 
 const styles = StyleSheet.create({
@@ -53,7 +61,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor:"#DDFFFF"
+        backgroundColor: "#DDFFFF"
     }
 });
 
