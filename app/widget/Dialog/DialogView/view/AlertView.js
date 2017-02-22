@@ -13,8 +13,6 @@ import {
 import {observable, computed} from 'mobx'
 import {observer} from 'mobx-react/native'
 
-let flatMap = require('flatmap');
-
 const DIMENSION = Dimensions.get('window');
 const WINDOW_WIDTH = DIMENSION.width;
 // const WINDOW_HEIGHT = DIMENSION.height;
@@ -50,7 +48,7 @@ class DialogView extends Component {
 
     renderButtons = () => {
         let buttonListSize = this.props.dialogInfo.buttonList.length;
-        return flatMap(this.props.dialogInfo.buttonList, (it, index) => {
+        return this.props.dialogInfo.buttonList.flatMap((it, index) => {
                 let buttonItems = [];
                 if (index > 0) {
                     buttonItems.push(

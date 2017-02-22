@@ -12,4 +12,17 @@ export function init() {
             this.splice(index, 1);
         }
     };
+
+    Array.prototype.flatMap = function (iter, context) {
+        let results = [];
+        this.forEach(function(value, index, list) {
+            let res = iter.call(context, value, index, list);
+            if (Array.isArray(res)) {
+                results.push.apply(results, res);
+            } else if (res != null) {
+                results.push(res);
+            }
+        });
+        return results;
+    }
 }
