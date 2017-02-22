@@ -30,6 +30,9 @@ class DialogIniter {
                             super(props);
                             OriComponent.prototype.alert = (...p) => {
                                 this.refs.dialogs.alert(...p)
+                            };
+                            OriComponent.prototype.actionSheet = (...p) => {
+                                this.refs.dialogs.actionSheet(...p)
                             }
                         }
 

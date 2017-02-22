@@ -8,10 +8,8 @@ class ActionSheet extends BaseDialogBean {
         super(id, AcitionSheetView);
     }
 
-    @observable
     title;
 
-    @observable
     dataList;
 
     itemStrParser;

@@ -30,58 +30,69 @@ class AcitionSheetView extends Component {
     render = () =>
         <Animated.View
             style={{
-                backgroundColor:"#FFFFFF",
                 alignSelf:"flex-end",
-                width:WINDOW_WIDTH*0.6,
+                width:WINDOW_WIDTH*0.9,
                 opacity: this.fadeAnim,
-                borderRadius: 5,
                 transform:[{
                     translateY:this.translateYAnim
                 }]
             }}>
-            <View style={{alignItems:"center",justifyContent:"center",padding:20}}>
-                <Text>{this.props.dialogInfo.message}</Text>
+            <View style={{backgroundColor:"#FFFFFF", borderRadius: 5,}}>
+                <View style={{alignItems:"center",justifyContent:"center",padding:20}}>
+                    <Text>{this.props.dialogInfo.title}</Text>
+                </View>
+                <View style={{borderTopWidth:1,borderTopColor:"#CCCCCC"}}>
+                    {this.renderButtons()}
+                </View>
             </View>
-            <View style={{flexDirection:"row", borderTopWidth:1,borderTopColor:"#CCCCCC"}}>
-                {this.renderButtons()}
-            </View>
+            <TouchableHighlight
+                style={{
+                        backgroundColor:"#FFFFFF", borderRadius: 5, marginTop:10, marginBottom:10,
+                            alignItems:"center",justifyContent:"center",padding:10
+                        }}
+                onPress={()=>{
+                            this.props.dismiss();
+                        }}
+                underlayColor="#EEEEEE"
+            >
+                <Text> 取消 </Text>
+            </TouchableHighlight>
         </Animated.View>;
 
 
     renderButtons = () => {
-        let buttonListSize = this.props.dialogInfo.buttonList.length;
-        return flatMap(this.props.dialogInfo.buttonList, (it, index) => {
+        let buttonListSize = this.props.dialogInfo.dataList.length;
+        return flatMap(this.props.dialogInfo.dataList, (it, index) => {
                 let buttonItems = [];
                 if (index > 0) {
                     buttonItems.push(
                         <View key={`${index}-split`}
-                              style={{alignSelf:'stretch',width:1,backgroundColor:"#CCCCCC"}}/>
+                              style={{alignSelf:'stretch',height:1,backgroundColor:"#CCCCCC"}}/>
                     )
                 }
                 let borderBottomLeftRadius = 0;
                 let borderBottomRightRadius = 0;
-                if (index == 0) {
-                    borderBottomLeftRadius = 5;
-                }
                 if (index == buttonListSize - 1) {
+                    borderBottomLeftRadius = 5;
                     borderBottomRightRadius = 5;
                 }
                 buttonItems.push(
                     <TouchableHighlight
                         key={`${index}`}
-                        style={{flex:1,alignItems:"center",justifyContent:"center",padding:10,
-                        borderBottomLeftRadius: borderBottomLeftRadius,
-                        borderBottomRightRadius:borderBottomRightRadius,
+                        style={{
+                            alignItems:"center",justifyContent:"center",padding:10,
+                            borderBottomLeftRadius: borderBottomLeftRadius,
+                            borderBottomRightRadius:borderBottomRightRadius,
                         }}
                         onPress={()=>{
                             this.props.dismiss();
-                            if(it.callBack){
-                                it.callBack()
+                            if(this.props.dialogInfo.callBack){
+                                this.props.dialogInfo.callBack(it,index,this.props.dialogInfo.dataList)
                             }
                         }}
                         underlayColor="#EEEEEE"
                     >
-                        <Text>{`${it.text}`}</Text>
+                        <Text>{this.props.dialogInfo.itemStrParser(it)}</Text>
                     </TouchableHighlight>
                 );
                 return buttonItems

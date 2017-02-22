@@ -12,10 +12,8 @@ class AlertBean extends BaseDialogBean {
         text: "确认",
     }];
 
-    @observable
     title;
 
-    @observable
     message;
 
 }

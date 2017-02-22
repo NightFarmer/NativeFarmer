@@ -17,13 +17,12 @@ class DialogDemo extends Component {
             <AlertDemo1 alert={this.alert}/>
             <AlertDemo2 alert={this.alert}/>
             <AlertDemo3 alert={this.alert}/>
+            <ActionSheet1 actionSheet={this.actionSheet}/>
         </View>;
 }
 
 @observer
-class AlertDemo1 extends Component {
-    text = "alert1";
-
+class DialogDemoRow extends Component {
     @observable
     msg = '';
 
@@ -36,6 +35,10 @@ class AlertDemo1 extends Component {
         <TouchableOpacity onPress={this.onPress}>
             <Text>{this.info}</Text>
         </TouchableOpacity>;
+}
+
+class AlertDemo1 extends DialogDemoRow {
+    text = "alert1";
 
     onPress = () => {
         this.props.alert('title', 'msg', [{text: "foo"}], () => {
@@ -44,22 +47,8 @@ class AlertDemo1 extends Component {
     }
 }
 
-@observer
-class AlertDemo2 extends Component {
+class AlertDemo2 extends DialogDemoRow {
     text = "alert2";
-
-    @observable
-    msg = '';
-
-    @computed
-    get info() {
-        return `${this.text} ${this.msg}`
-    }
-
-    render = () =>
-        <TouchableOpacity onPress={this.onPress}>
-            <Text>{this.info}</Text>
-        </TouchableOpacity>;
 
     onPress = () => {
         this.props.alert('title', 'msg', [
@@ -79,22 +68,8 @@ class AlertDemo2 extends Component {
     }
 }
 
-@observer
-class AlertDemo3 extends Component {
+class AlertDemo3 extends DialogDemoRow {
     text = "alert3";
-
-    @observable
-    msg = '';
-
-    @computed
-    get info() {
-        return `${this.text} ${this.msg}`
-    }
-
-    render = () =>
-        <TouchableOpacity onPress={this.onPress}>
-            <Text>{this.info}</Text>
-        </TouchableOpacity>;
 
     onPress = () => {
         this.props.alert('title', 'msg', [
@@ -117,6 +92,32 @@ class AlertDemo3 extends Component {
                 }
             }
         ])
+    }
+}
+
+class ActionSheet1 extends DialogDemoRow {
+    text = "actionSheet1";
+
+    onPress = () => {
+        this.props.actionSheet('title', [
+                {
+                    text: "foo",
+                },
+                {
+                    text: "bar",
+                },
+                {
+                    text: "baz",
+                }
+            ],
+            (item) => item.text,
+            (it, index, dataList) => {
+                this.msg = `${it.text} selected!`
+            },
+            () => {
+                this.msg = `canceled!`
+            }
+        )
     }
 }
 

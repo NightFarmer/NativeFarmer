@@ -50,12 +50,13 @@ class DialogContainer extends Component {
         return alert
     };
 
-    actionSheet = (title, dataList, itemStrParser, callBack) => {
+    actionSheet = (title, dataList, itemStrParser, callBack, cancelCallback) => {
         const actionSheet = new ActionSheet(uid++);
         actionSheet.title = title;
         actionSheet.dataList = dataList;
         actionSheet.itemStrParser = itemStrParser;
         actionSheet.callBack = callBack;
+        actionSheet.cancelCallback = cancelCallback;
         this.dialogList.push(actionSheet);
         return actionSheet
     };
