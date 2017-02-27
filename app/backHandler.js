@@ -10,23 +10,24 @@ function backHandler(handler = "handleBack") {
         let superMount = target.prototype.componentWillMount;
         let superUnmount = target.prototype.componentWillUnmount;
 
-        function handleBack() {
-            if (target.prototype[handler]) {
-                return target.prototype[handler]()
-            }
-            return true
-        }
+        let listenerHandler;
 
         target.prototype.componentWillMount = () => {
             if (Platform.OS === 'android') {
-                BackAndroid.addEventListener('hardwareBackPress', handleBack);
+                listenerHandler = BackAndroid.addEventListener('hardwareBackPress', () => {
+                    if (target.prototype[handler]) {
+                        return target.prototype[handler]()
+                    }
+                    return true
+                });
             }
             superMount && superMount.bind(target.prototype)()
         };
 
         target.prototype.componentWillUnmount = () => {
-            if (Platform.OS === 'android') {
-                BackAndroid.removeEventListener('hardwareBackPress', handleBack);
+            if (Platform.OS === 'android' && listenerHandler) {
+                // BackAndroid.removeEventListener('hardwareBackPress', target.prototype.handleBack);
+                listenerHandler.remove()
             }
             superUnmount && superUnmount.bind(target.prototype)()
         };
