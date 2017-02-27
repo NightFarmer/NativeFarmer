@@ -104,10 +104,22 @@ android {
             include "armeabi-v7a", "x86"
         }
     }
+    signingConfigs {
+        release {
+            storeFile file('NightFarmer.jks')
+            keyPassword '123456'
+            keyAlias 'demo'
+            storePassword 'fengcan'
+        }
+    }
     buildTypes {
         release {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.release
+        }
+        debug{
+            signingConfig signingConfigs.release
         }
     }
     // applicationVariants are e.g. debug, release
