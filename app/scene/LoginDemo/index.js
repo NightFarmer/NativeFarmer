@@ -79,7 +79,9 @@ class LoginPage extends Component {
         // this.loginData.result = "hehe"
         // this.props.navigator.pop();
         // this.props.navigator.resetTo({component: MainPage})//登陆完成重置整个路由栈
-        Actions.main()
+        if (resultObj.result == 1) {
+            Actions.main()
+        }
     }
 }
 

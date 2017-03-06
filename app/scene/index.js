@@ -9,6 +9,7 @@ import ToastDemo from './ToastDemo'
 import CantBackScene from './CantBackScene'
 import DialogDemo from './DialogDemo'
 import MainPage from './MainPage'
+import CalendarDemo from './CalendarDemo'
 
 import React, {Component} from 'react';
 import {Actions, Scene, ActionConst} from 'react-native-router-flux';
@@ -23,7 +24,8 @@ export {
     timerUnmount,
     ToastDemo,
     CantBackScene,
-    DialogDemo
+    DialogDemo,
+    CalendarDemo,
 }
 
 import Dialog from '../widget/Dialog'
@@ -46,7 +48,7 @@ const scenes = Actions.create(
         <Scene key="ToastDemo" component={ToastDemo} hideNavBar={true}/>
         <Scene key="CantBackScene" component={CantBackScene} hideNavBar={true} panHandlers={null}/>
         <Scene key="DialogDemo" component={DialogDemo} hideNavBar={true} panHandlers={null}/>
-
+        <Scene key="CalendarDemo" component={CalendarDemo} hideNavBar={true}/>
     </Scene>
 );
 

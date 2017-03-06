@@ -23,6 +23,7 @@ const demoList = [
     {title: 'ToastDemo示例', component: "ToastDemo"},
     {title: '不能返回的界面', component: "CantBackScene"},
     {title: 'DialogDemo', component: "DialogDemo"},
+    {title: 'CalendarDemo', component: "CalendarDemo"},
 ];
 
 import backHandler from '../../backHandler'
